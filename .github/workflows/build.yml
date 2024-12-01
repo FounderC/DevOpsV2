@@ -1,0 +1,28 @@
+name: Build and Link
+
+on:
+  push:
+    branches:
+      - branchMake
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential
+
+      - name: Compile and link
+        run: |
+          make clean
+          make
+
+      - name: Save binary artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: compiled-binary
+          path: main
