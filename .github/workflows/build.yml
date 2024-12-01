@@ -1,0 +1,29 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - branchAutomake
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential automake autoconf g++
+
+      - name: Generate configuration
+        run: autoreconf --install && ./configure
+
+      - name: Build tarball
+        run: make dist
+
+      - name: Save tarball artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: tarball
+          path: "*.tar.gz"
