@@ -21,6 +21,7 @@ jobs:
           autoreconf --install
           ./configure
           dpkg-buildpackage -us -uc -b
+          mv ../*.deb .
 
       - name: Save Debian package artifact
         uses: actions/upload-artifact@v3
