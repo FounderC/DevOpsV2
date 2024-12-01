@@ -1,0 +1,13 @@
+Package: devopsv2-dbgsym
+Package-Type: ddeb
+Source: devopsv2
+Version: 1.0-1
+Auto-Built-Package: debug-symbols
+Architecture: amd64
+Maintainer: Your Name <your.email@example.com>
+Installed-Size: 29
+Depends: devopsv2 (= 1.0-1)
+Section: debug
+Priority: optional
+Description: debug symbols for devopsv2
+Build-Ids: c7d0aa6d0f3308c2b6e6d68316cdac06d45d4270

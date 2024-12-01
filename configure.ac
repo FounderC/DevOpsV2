@@ -1,8 +1,7 @@
-AC_INIT([DevOpsV2], [1.0], [youremail@example.com])
-AM_INIT_AUTOMAKE
+AC_INIT([DevOpsV2], [1.0], [your.email@example.com])
+AM_INIT_AUTOMAKE([foreign])
+AC_CONFIG_SRCDIR([main.cpp])
 AC_PROG_CXX
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
 
-AC_PACKAGE_NAME([DevOpsV2])
-AC_PACKAGE_VERSION([1.0])

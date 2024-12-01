@@ -1,0 +1,11 @@
+Package: devopsv2
+Version: 1.0-1
+Architecture: amd64
+Maintainer: Your Name <your.email@example.com>
+Installed-Size: 24
+Depends: libc6 (>= 2.34), libstdc++6 (>= 4.4)
+Section: utils
+Priority: optional
+Homepage: https://github.com/FounderC/DevOpsV2
+Description: DevOpsV2 C++ application
+ A simple C++ application for demonstration purposes.

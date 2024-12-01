@@ -1,0 +1,14 @@
+Source: devopsv2
+Section: utils
+Priority: optional
+Maintainer: Your Name <your.email@example.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+Homepage: https://github.com/FounderC/DevOpsV2
+
+Package: devopsv2
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: DevOpsV2 C++ application
+ A simple C++ application for demonstration purposes.
+
