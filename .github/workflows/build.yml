@@ -1,29 +1,30 @@
-name: Build and Test
+name: Build Debian Package
 
 on:
   push:
     branches:
-      - '**'
-  pull_request:
-    branches:
-      - '**'
+      - branchAutoPackage
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y build-essential automake autoconf g++
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential automake autoconf dpkg-dev
 
-    - name: Configure and Build
-      run: |
-        autoreconf --install
-        ./configure
-        make
+      - name: Build Debian package
+        run: |
+          autoreconf --install
+          ./configure
+          dpkg-buildpackage -us -uc
 
-    - name: Run Tests
-      run: make check
+      - name: Save Debian package artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: debian-package
+          path: "../*.deb"
+
