@@ -32,6 +32,6 @@ jobs:
 
 -       name: Clean previous configuration
         run: |
-          rm -f config.status config.cache config.log aclocal.m4
-          autoreconf --install
+           rm -f config.status config.cache config.log aclocal.m4
+           autoreconf --install
           ./configure
