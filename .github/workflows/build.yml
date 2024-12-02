@@ -39,11 +39,11 @@ jobs:
           path: test-suite.log
 
       - name: Log in to DockerHub
-        run: docker login -u ${{ vars.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t your_dockerhub_username/http_server:latest .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/http_server:latest .
 
       - name: Push Docker image
-        run: docker push your_dockerhub_username/http_server:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/http_server:latest
 
