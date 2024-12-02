@@ -1,0 +1,13 @@
+$ cat debian/control
+Source: http-server
+Section: utils
+Priority: optional
+Maintainer: FouncerC <khomenko.oleg@hotmail.com>
+Build-Depends: debhelper-compat (= 12), autotools-dev
+
+Package: http-server
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Simple HTTP server written in C++
+ This is a simple HTTP server that handles GET requests and returns
+ a payload using a trigonometric function from PA#3.
