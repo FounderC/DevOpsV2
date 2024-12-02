@@ -494,8 +494,8 @@ top_build_prefix =
 top_builddir = .
 top_srcdir = .
 AUTOMAKE_OPTIONS = foreign
-FuncA_SOURCES = main.cpp FuncA.cpp FuncA.h http_server.cpp calculateTime.cpp calculateTime.h
 test_func_a_SOURCES = unitTest.cpp FuncA.cpp FuncA.h calculateTime.cpp calculateTime.h
+FuncA_SOURCES = main.cpp FuncA.cpp FuncA.h http_server.cpp calculateTime.cpp calculateTime.h
 EXTRA_DIST = Makefile.am
 all: all-am
 
