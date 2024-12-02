@@ -42,37 +42,37 @@ PATH: /snap/bin/
 ## Core tests. ##
 ## ----------- ##
 
-configure:2007: looking for aux files: missing install-sh
-configure:2020:  trying ./
-configure:2049:   ./missing found
-configure:2031:   ./install-sh found
-configure:2178: checking for a BSD-compatible install
-configure:2251: result: /usr/bin/install -c
-configure:2262: checking whether build environment is sane
-configure:2317: result: yes
-configure:2476: checking for a race-free mkdir -p
-configure:2520: result: /usr/bin/mkdir -p
-configure:2527: checking for gawk
-configure:2562: result: no
-configure:2527: checking for mawk
-configure:2548: found /usr/bin/mawk
-configure:2559: result: mawk
-configure:2570: checking whether make sets $(MAKE)
-configure:2593: result: yes
-configure:2623: checking whether make supports nested variables
-configure:2641: result: yes
-configure:2847: checking for g++
-configure:2868: found /usr/bin/g++
-configure:2879: result: g++
-configure:2906: checking for C++ compiler version
-configure:2915: g++ --version >&5
+configure:2006: looking for aux files: missing install-sh
+configure:2019:  trying ./
+configure:2048:   ./missing found
+configure:2030:   ./install-sh found
+configure:2177: checking for a BSD-compatible install
+configure:2250: result: /usr/bin/install -c
+configure:2261: checking whether build environment is sane
+configure:2316: result: yes
+configure:2475: checking for a race-free mkdir -p
+configure:2519: result: /usr/bin/mkdir -p
+configure:2526: checking for gawk
+configure:2561: result: no
+configure:2526: checking for mawk
+configure:2547: found /usr/bin/mawk
+configure:2558: result: mawk
+configure:2569: checking whether make sets $(MAKE)
+configure:2592: result: yes
+configure:2622: checking whether make supports nested variables
+configure:2640: result: yes
+configure:2845: checking for g++
+configure:2866: found /usr/bin/g++
+configure:2877: result: g++
+configure:2904: checking for C++ compiler version
+configure:2913: g++ --version >&5
 g++ (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
 Copyright (C) 2021 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-configure:2926: $? = 0
-configure:2915: g++ -v >&5
+configure:2924: $? = 0
+configure:2913: g++ -v >&5
 Using built-in specs.
 COLLECT_GCC=g++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper
@@ -84,47 +84,47 @@ Thread model: posix
 Supported LTO compression algorithms: zlib zstd
 gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) 
 ... rest of stderr output deleted ...
-configure:2926: $? = 0
-configure:2915: g++ -V >&5
+configure:2924: $? = 0
+configure:2913: g++ -V >&5
 g++: error: unrecognized command-line option '-V'
 g++: fatal error: no input files
 compilation terminated.
-configure:2926: $? = 1
-configure:2915: g++ -qversion >&5
+configure:2924: $? = 1
+configure:2913: g++ -qversion >&5
 g++: error: unrecognized command-line option '-qversion'; did you mean '--version'?
 g++: fatal error: no input files
 compilation terminated.
-configure:2926: $? = 1
-configure:2946: checking whether the C++ compiler works
-configure:2968: g++    conftest.cpp  >&5
-configure:2972: $? = 0
-configure:3022: result: yes
-configure:3025: checking for C++ compiler default output file name
-configure:3027: result: a.out
-configure:3033: checking for suffix of executables
-configure:3040: g++ -o conftest    conftest.cpp  >&5
-configure:3044: $? = 0
-configure:3067: result: 
-configure:3089: checking whether we are cross compiling
-configure:3097: g++ -o conftest    conftest.cpp  >&5
-configure:3101: $? = 0
-configure:3108: ./conftest
-configure:3112: $? = 0
-configure:3127: result: no
-configure:3132: checking for suffix of object files
-configure:3155: g++ -c   conftest.cpp >&5
-configure:3159: $? = 0
-configure:3181: result: o
-configure:3185: checking whether the compiler supports GNU C++
-configure:3205: g++ -c   conftest.cpp >&5
-configure:3205: $? = 0
-configure:3215: result: yes
-configure:3226: checking whether g++ accepts -g
-configure:3247: g++ -c -g  conftest.cpp >&5
-configure:3247: $? = 0
-configure:3291: result: yes
-configure:3311: checking for g++ option to enable C++11 features
-configure:3326: g++  -c -g -O2  conftest.cpp >&5
+configure:2924: $? = 1
+configure:2944: checking whether the C++ compiler works
+configure:2966: g++    conftest.cpp  >&5
+configure:2970: $? = 0
+configure:3020: result: yes
+configure:3023: checking for C++ compiler default output file name
+configure:3025: result: a.out
+configure:3031: checking for suffix of executables
+configure:3038: g++ -o conftest    conftest.cpp  >&5
+configure:3042: $? = 0
+configure:3065: result: 
+configure:3087: checking whether we are cross compiling
+configure:3095: g++ -o conftest    conftest.cpp  >&5
+configure:3099: $? = 0
+configure:3106: ./conftest
+configure:3110: $? = 0
+configure:3125: result: no
+configure:3130: checking for suffix of object files
+configure:3153: g++ -c   conftest.cpp >&5
+configure:3157: $? = 0
+configure:3179: result: o
+configure:3183: checking whether the compiler supports GNU C++
+configure:3203: g++ -c   conftest.cpp >&5
+configure:3203: $? = 0
+configure:3213: result: yes
+configure:3224: checking whether g++ accepts -g
+configure:3245: g++ -c -g  conftest.cpp >&5
+configure:3245: $? = 0
+configure:3289: result: yes
+configure:3309: checking for g++ option to enable C++11 features
+configure:3324: g++  -c -g -O2  conftest.cpp >&5
 conftest.cpp: In function 'int main(int, char**)':
 conftest.cpp:177:25: warning: empty parentheses were disambiguated as a function declaration [-Wvexing-parse]
   177 |   cxx11test::delegate d2();
@@ -134,18 +134,18 @@ conftest.cpp:177:25: note: remove parentheses to default-initialize a variable
       |                         ^~
       |                         --
 conftest.cpp:177:25: note: or replace parentheses with braces to value-initialize a variable
-configure:3326: $? = 0
-configure:3344: result: none needed
-configure:3411: checking whether make supports the include directive
-configure:3426: make -f confmf.GNU && cat confinc.out
+configure:3324: $? = 0
+configure:3342: result: none needed
+configure:3409: checking whether make supports the include directive
+configure:3424: make -f confmf.GNU && cat confinc.out
 this is the am__doit target
-configure:3429: $? = 0
-configure:3448: result: yes (GNU style)
-configure:3474: checking dependency style of g++
-configure:3586: result: gcc3
-configure:3740: checking that generated files are newer than configure
-configure:3746: result: done
-configure:3769: creating ./config.status
+configure:3427: $? = 0
+configure:3446: result: yes (GNU style)
+configure:3472: checking dependency style of g++
+configure:3584: result: gcc3
+configure:3738: checking that generated files are newer than configure
+configure:3744: result: done
+configure:3767: creating ./config.status
 
 ## ---------------------- ##
 ## Running config.status. ##
@@ -165,7 +165,6 @@ on founderDevops
 config.status:769: creating Makefile
 config.status:941: executing depfiles commands
 config.status:1018: cd .       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
-make: Nothing to be done for 'am--depfiles'.
 config.status:1023: $? = 0
 
 ## ---------------- ##
