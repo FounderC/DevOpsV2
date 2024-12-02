@@ -1,6 +1,0 @@
-Test 1 - x = 0, n = 1: 0 (Expected: 0)
-Test 2 - x = 1, n = 1: 1 (Expected: 1)
-Test 3 - x = 1, n = 2: 0.666667 (Expected: 0.666667)
-Test 4 - x = M_PI/4, n = 3: 0.683677 (Expected: 0.683677)
-Test 5 - x = M_PI/2, n = 5: 5.28962 (Expected: 5.28962)
-PASS test_func_a (exit status: 0)
