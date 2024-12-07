@@ -1,19 +1,15 @@
-FROM ubuntu:latest
+FROM alpine:latest AS build
+RUN apk add --no-cache build-base autoconf automake git
+WORKDIR /home/DevOpsV2
+RUN git clone --branch branchHTTPserver https://github.com/FounderC/DevOpsV2.git . 
+RUN autoreconf --install && \
+    ./configure && \
+    make
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    g++ \
-    autoconf \
-    automake \
-    libtool \
-    pkg-config
-
+FROM alpine:latest
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
-COPY . /app
-
-RUN autoreconf --install && ./configure && make
-
+COPY --from=build /home/DevOpsV2/FuncA /app/FuncA
 EXPOSE 8081
-
 CMD ["./FuncA"]
 
