@@ -73,9 +73,9 @@ jobs:
 
       # Крок 14: Створення мульті-архітектурного маніфесту
       - name: Create manifest
-        run:  docker manifest create оlegkhomeko/optimaserver:latest \
-              --amend оlegkhomeko/optimaserver:amd64 \
-              --amend оlegkhomeko/optimaserver:arm64
+        run:  docker manifest create оlegkhomenko/optimaserver:latest \
+              --amend оlegkhomenko/optimaserver:amd64 \
+              --amend оlegkhomenko/optimaserver:arm64
 
       # Крок 15: Пуш маніфесту
       - name: Push manifest to docker hub
