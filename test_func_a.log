@@ -1,6 +1,6 @@
 cos(0) calculated value: 1
 cos(pi) calculated value: -1
 cos(pi/2) calculated value: 6.41854e-17
-Calculation and sorting time: 19694 milliseconds
-All tests passed!
-PASS test_func_a (exit status: 0)
+Calculation and sorting time: 21786 milliseconds
+test_func_a: unitTest.cpp:37: void test_calculation_time(): Assertion `iMS >= 5000 && iMS <= 20000' failed.
+FAIL test_func_a (exit status: 134)

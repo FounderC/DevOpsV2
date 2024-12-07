@@ -419,7 +419,7 @@ CXX = g++
 CXXDEPMODE = depmode=gcc3
 CXXFLAGS = -g -O2
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"DevOpsV2\" -DPACKAGE_TARNAME=\"devopsv2\" -DPACKAGE_VERSION=\"1.0\" -DPACKAGE_STRING=\"DevOpsV2\ 1.0\" -DPACKAGE_BUGREPORT=\"your.email@example.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"devopsv2\" -DVERSION=\"1.0\"
+DEFS = -DPACKAGE_NAME=\"DevOpsV2\" -DPACKAGE_TARNAME=\"devopsv2\" -DPACKAGE_VERSION=\"1.0\" -DPACKAGE_STRING=\"DevOpsV2\ 1.0\" -DPACKAGE_BUGREPORT=\"khomenko.oleg@hotmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"devopsv2\" -DVERSION=\"1.0\"
 DEPDIR = .deps
 ECHO_C = 
 ECHO_N = -n
@@ -439,7 +439,7 @@ MAKEINFO = ${SHELL} '/home/founder/DevOpsV2/missing' makeinfo
 MKDIR_P = /usr/bin/mkdir -p
 OBJEXT = o
 PACKAGE = devopsv2
-PACKAGE_BUGREPORT = your.email@example.com
+PACKAGE_BUGREPORT = khomenko.oleg@hotmail.com
 PACKAGE_NAME = DevOpsV2
 PACKAGE_STRING = DevOpsV2 1.0
 PACKAGE_TARNAME = devopsv2
