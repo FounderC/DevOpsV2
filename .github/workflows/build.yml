@@ -52,10 +52,16 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build and push for amd64
-        run: docker buildx build --platform=linux/amd64 -t olegkhomenko/http_server:amd64 --push .
+        run: |
+          docker buildx build --platform=linux/amd64 --load \
+          -t olegkhomenko/http_server:amd64 .
+          docker push olegkhomenko/http_server:amd64
 
       - name: Build and push for arm64
-        run: docker buildx build --platform=linux/arm64 -t olegkhomenko/http_server:arm64 --push .
+        run: |
+          docker buildx build --platform=linux/arm64 --load \
+          -t olegkhomenko/http_server:arm64 .
+          docker push olegkhomenko/http_server:arm64
 
       - name: Create manifest
         run: |
