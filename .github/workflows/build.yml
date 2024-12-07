@@ -50,7 +50,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
-ів
+
       - name: Build and push for amd64
         run: docker buildx build --platform=linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/http_server:amd64 --push .
 
