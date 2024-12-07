@@ -58,7 +58,17 @@ jobs:
         run: docker buildx build --platform=linux/arm64 -t ${{ secrets.DOCKER_USERNAME }}/http_server:arm64 --push .
 
       - name: Create manifest
-        run: docker manifest create olegkhomenko/http_server --amend olegkhomenko/http_server:amd64 --amend olegkhomenko/http_server:arm64
+        run: |
+          echo "Creating manifest list for http_server..."
+          docker manifest create ${{ secrets.DOCKER_USERNAME }}/http_server \
+            --amend ${{ secrets.DOCKER_USERNAME }}/http_server:amd64 \
+            --amend ${{ secrets.DOCKER_USERNAME }}/http_server:arm64
+          echo "Manifest creation completed. Inspecting manifest:"
+          docker manifest inspect ${{ secrets.DOCKER_USERNAME }}/http_server
 
-      - name: Push manifest to docker hub
-        run: docker manifest push olegkhomenko/http_server
+      - name: Push manifest to Docker Hub
+        run: |
+          echo "Pushing manifest list to Docker Hub..."
+          docker manifest push ${{ secrets.DOCKER_USERNAME }}/http_server
+          echo "Manifest pushed successfully."
+
