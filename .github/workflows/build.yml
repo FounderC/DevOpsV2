@@ -11,32 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Крок 1: Клон репозиторію
       - uses: actions/checkout@v4
 
-      # Крок 2: Встановлення залежностей для білду (локальна збірка)
       - name: Install build dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y autoconf automake g++ libboost-test-dev
 
-      # Крок 3: Генеруємо configure
       - name: Generate configure script
         run: autoreconf --install
 
-      # Крок 4: Конфігуруємо
       - name: Configure
         run: ./configure
 
-      # Крок 5: Білд
       - name: Build
         run: make
 
-      # Крок 6: Запуск тестів
       - name: Run tests
         run: make check
 
-      # Крок 7: Якщо тести падають – завантажуємо лог
       - name: Upload test log
         if: failure()
         uses: actions/upload-artifact@v4
@@ -56,19 +49,20 @@ jobs:
       - name: Log in to the Container registry
         uses: docker/login-action@v3
         with:
-          username: ${{ vars.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build and push for amd64
-        run: docker buildx build --platform=linux/amd64 -t ${{ vars.DOCKER_USERNAME }}/optimaserver:amd64 --push .
+        run: docker buildx build --platform=linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/optimaserver:amd64 --push .
 
       - name: Build and push for arm64
-        run: docker buildx build --platform=linux/arm64 -t ${{ vars.DOCKER_USERNAME }}/optimaserver:arm64 --push .
+        run: docker buildx build --platform=linux/arm64 -t ${{ secrets.DOCKER_USERNAME }}/optimaserver:arm64 --push .
 
       - name: Create manifest
-        run: docker manifest create ${{ vars.DOCKER_USERNAME }}/optimaserver \
-             --amend ${{ vars.DOCKER_USERNAME }}/optimaserver:amd64 \
-             --amend ${{ vars.DOCKER_USERNAME }}/optimaserver:arm64
+        run: docker manifest create ${{ secrets.DOCKER_USERNAME }}/optimaserver \
+             --amend ${{ secrets.DOCKER_USERNAME }}/optimaserver:amd64 \
+             --amend ${{ secrets.DOCKER_USERNAME }}/optimaserver:arm64
 
       - name: Push manifest to docker hub
-        run: docker manifest push ${{ vars.DOCKER_USERNAME }}/optimaserver
+        run: docker manifest push ${{ secrets.DOCKER_USERNAME }}/optimaserver
+
