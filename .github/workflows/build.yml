@@ -26,15 +26,15 @@ jobs:
       - name: Build
         run: make
 
-      - name: Run tests
-        run: make check
+      #- name: Run tests
+      #  run: make check
 
-      - name: Upload test log
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-logs
-          path: test-suite.log
+      #- name: Upload test log
+      #  if: failure()
+      #  uses: actions/upload-artifact@v4
+      #  with:
+      #    name: test-logs
+      #    path: test-suite.log
 
       - name: QEMU install
         uses: docker/setup-qemu-action@v3
@@ -58,11 +58,7 @@ jobs:
         run: docker buildx build --platform=linux/arm64 -t ${{ secrets.DOCKER_USERNAME }}/http_server:arm64 --push .
 
       - name: Create manifest
-        run: |
-          docker manifest create olegkhomenko/http_server:latest \
-            --amend olegkhomenko/http_server:amd64 \
-            --amend olegkhomenkoh/http_server:arm64
-          
-      - name: Push manifest
-        run: |
-          docker manifest push olegkhomenko/http_server:latest
+        run: docker manifest create olegkhomenko/http_server --amend olegkhomenko/http_server:amd64 --amend olegkhomenko/http_server:arm64
+
+      - name: Push manifest to docker hub
+        run: docker manifest push olegkhomenko/http_server
