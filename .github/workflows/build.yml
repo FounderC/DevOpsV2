@@ -57,10 +57,12 @@ jobs:
       - name: Build and push for arm64
         run: docker buildx build --platform=linux/arm64 -t ${{ secrets.DOCKER_USERNAME }}/http_server:arm64 --push .
 
-      - name: Create and push manifest
+      - name: Create manifest
         run: |
-          docker manifest create ${{ secrets.DOCKER_USERNAME }}/http_server:latest \
-            --amend ${{ secrets.DOCKER_USERNAME }}/http_server:amd64 \
-            --amend ${{ secrets.DOCKER_USERNAME }}/http_server:arm64
-          docker manifest push ${{ secrets.DOCKER_USERNAME }}/http_server:latest
-
+          docker manifest create olegkhomenko/http_server:latest \
+            --amend olegkhomenko/http_server:amd64 \
+            --amend olegkhomenkoh/http_server:arm64
+          
+      - name: Push manifest
+        run: |
+          docker manifest push olegkhomenko/http_server:latest
