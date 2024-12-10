@@ -1,15 +1,12 @@
-FROM alpine:latest AS build
-RUN apk add --no-cache build-base autoconf automake git
+FROM alpine AS build
+RUN apk add --no-cache build-base automake autoconf
 WORKDIR /home/DevOpsV2
-RUN git clone --branch branchHTTPserver https://github.com/FounderC/DevOpsV2.git . 
-RUN autoreconf --install && \
-    ./configure && \
-    make
+COPY . .
+RUN autoreconf --install
+RUN ./configure
+RUN make
 
-FROM alpine:latest
-RUN apk add --no-cache libc6-compat
-WORKDIR /app
-COPY --from=build /home/DevOpsV2/FuncA /app/FuncA
-EXPOSE 8081
-CMD ["./FuncA"]
 
+FROM alpine
+COPY --from=build /home/DevOpsV2/FuncA /usr/local/bin/FuncA
+ENTRYPOINT ["/usr/local/bin/FuncA"]
