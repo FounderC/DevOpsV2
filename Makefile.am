@@ -1,9 +1,18 @@
+# Використання Automake
 AUTOMAKE_OPTIONS = foreign
-bin_PROGRAMS = FuncA
-check_PROGRAMS = test_func_a
-test_func_a_SOURCES = unitTest.cpp FuncA.cpp FuncA.h calculateTime.cpp calculateTime.h
 
-TESTS = test_func_a
-FuncA_SOURCES = main.cpp FuncA.cpp FuncA.h http_server.cpp calculateTime.cpp calculateTime.h
-EXTRA_DIST = Makefile.am
+# Основна програма
+bin_PROGRAMS = FuncA
+FuncA_SOURCES = main.cpp http_server.cpp FuncA.cpp FuncA.h load_server.cpp load_server.h
+
+# Тестова програма
+check_PROGRAMS = funca_tests
+funca_tests_SOURCES = funca_tests.cpp FuncA.cpp FuncA.h load_server.cpp load_server.h
+
+# Додаткові файли для дистрибуції
+EXTRA_DIST = Makefile.am configure.ac
+
+# Тести
+TESTS = funca_tests
+TESTS_ENVIRONMENT = GTEST_COLOR=1
 

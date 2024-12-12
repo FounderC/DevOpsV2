@@ -1,4 +1,4 @@
-name: C++ CI with Make
+name: C++ CI with Make and Docker
 
 on:
   push:
@@ -11,26 +11,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      # Клонування репозиторію
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
+      # Встановлення залежностей
       - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y autoconf automake g++ libboost-test-dev
+          sudo apt-get install -y autoconf automake g++ libboost-test-dev build-essential docker.io
 
+      # Генерація скрипту конфігурації
       - name: Generate configure script
-        run: |
-          autoreconf --install
+        run: autoreconf --install
 
+      # Налаштування проекту
       - name: Configure
         run: ./configure
 
+      # Збирання проекту
       - name: Build
         run: make
 
+      # Запуск тестів
       - name: Run tests
         run: make check
 
+      # Завантаження логів тестів (у разі помилки)
       - name: Upload test log
         if: failure()
         uses: actions/upload-artifact@v4
@@ -38,12 +45,15 @@ jobs:
           name: test-logs
           path: test-suite.log
 
+      # Вхід до DockerHub
       - name: Log in to DockerHub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
 
+      # Створення Docker-образу
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/http_server:latest .
 
+      # Завантаження Docker-образу до DockerHub
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/http_server:latest
 

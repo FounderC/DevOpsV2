@@ -1,0 +1,8 @@
+#include <gtest/gtest.h>
+#include "load_server.h"
+
+TEST(ServerLoadTest, LoadExecutionTime) {
+    int elapsedTime = simulateServerLoad();
+    ASSERT_GE(elapsedTime, 5000); // Перевіряє, що час >= 5000 мс
+    ASSERT_LE(elapsedTime, 20000); // Перевіряє, що час <= 20000 мс
+}

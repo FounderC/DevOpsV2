@@ -87,8 +87,8 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 bin_PROGRAMS = FuncA$(EXEEXT)
-check_PROGRAMS = test_func_a$(EXEEXT)
-TESTS = test_func_a$(EXEEXT)
+check_PROGRAMS = funca_tests$(EXEEXT)
+TESTS = funca_tests$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -103,14 +103,14 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_FuncA_OBJECTS = main.$(OBJEXT) FuncA.$(OBJEXT) \
-	http_server.$(OBJEXT) calculateTime.$(OBJEXT)
+am_FuncA_OBJECTS = main.$(OBJEXT) http_server.$(OBJEXT) \
+	FuncA.$(OBJEXT) load_server.$(OBJEXT)
 FuncA_OBJECTS = $(am_FuncA_OBJECTS)
 FuncA_LDADD = $(LDADD)
-am_test_func_a_OBJECTS = unitTest.$(OBJEXT) FuncA.$(OBJEXT) \
-	calculateTime.$(OBJEXT)
-test_func_a_OBJECTS = $(am_test_func_a_OBJECTS)
-test_func_a_LDADD = $(LDADD)
+am_funca_tests_OBJECTS = funca_tests.$(OBJEXT) FuncA.$(OBJEXT) \
+	load_server.$(OBJEXT)
+funca_tests_OBJECTS = $(am_funca_tests_OBJECTS)
+funca_tests_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -126,9 +126,9 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/FuncA.Po \
-	./$(DEPDIR)/calculateTime.Po ./$(DEPDIR)/http_server.Po \
-	./$(DEPDIR)/main.Po ./$(DEPDIR)/unitTest.Po
+am__depfiles_remade = ./$(DEPDIR)/FuncA.Po ./$(DEPDIR)/funca_tests.Po \
+	./$(DEPDIR)/http_server.Po ./$(DEPDIR)/load_server.Po \
+	./$(DEPDIR)/main.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -155,8 +155,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(FuncA_SOURCES) $(test_func_a_SOURCES)
-DIST_SOURCES = $(FuncA_SOURCES) $(test_func_a_SOURCES)
+SOURCES = $(FuncA_SOURCES) $(funca_tests_SOURCES)
+DIST_SOURCES = $(FuncA_SOURCES) $(funca_tests_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -385,7 +385,8 @@ TEST_LOG_DRIVER = $(SHELL) $(top_srcdir)/test-driver
 TEST_LOG_COMPILE = $(TEST_LOG_COMPILER) $(AM_TEST_LOG_FLAGS) \
 	$(TEST_LOG_FLAGS)
 am__DIST_COMMON = $(srcdir)/Makefile.in AUTHORS COPYING ChangeLog \
-	INSTALL NEWS README depcomp install-sh missing test-driver
+	INSTALL NEWS README compile depcomp install-sh missing \
+	test-driver
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -493,10 +494,15 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+
+# Використання Automake
 AUTOMAKE_OPTIONS = foreign
-test_func_a_SOURCES = unitTest.cpp FuncA.cpp FuncA.h calculateTime.cpp calculateTime.h
-FuncA_SOURCES = main.cpp FuncA.cpp FuncA.h http_server.cpp calculateTime.cpp calculateTime.h
-EXTRA_DIST = Makefile.am
+FuncA_SOURCES = main.cpp http_server.cpp FuncA.cpp FuncA.h load_server.cpp load_server.h
+funca_tests_SOURCES = funca_tests.cpp FuncA.cpp FuncA.h load_server.cpp load_server.h
+
+# Додаткові файли для дистрибуції
+EXTRA_DIST = Makefile.am configure.ac
+TESTS_ENVIRONMENT = GTEST_COLOR=1
 all: all-am
 
 .SUFFIXES:
@@ -584,9 +590,9 @@ FuncA$(EXEEXT): $(FuncA_OBJECTS) $(FuncA_DEPENDENCIES) $(EXTRA_FuncA_DEPENDENCIE
 	@rm -f FuncA$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(FuncA_OBJECTS) $(FuncA_LDADD) $(LIBS)
 
-test_func_a$(EXEEXT): $(test_func_a_OBJECTS) $(test_func_a_DEPENDENCIES) $(EXTRA_test_func_a_DEPENDENCIES) 
-	@rm -f test_func_a$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(test_func_a_OBJECTS) $(test_func_a_LDADD) $(LIBS)
+funca_tests$(EXEEXT): $(funca_tests_OBJECTS) $(funca_tests_DEPENDENCIES) $(EXTRA_funca_tests_DEPENDENCIES) 
+	@rm -f funca_tests$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(funca_tests_OBJECTS) $(funca_tests_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -595,10 +601,10 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FuncA.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/calculateTime.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/funca_tests.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/http_server.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/load_server.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/unitTest.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -820,9 +826,9 @@ recheck: all $(check_PROGRAMS)
 	        am__force_recheck=am--force-recheck \
 	        TEST_LOGS="$$log_list"; \
 	exit $$?
-test_func_a.log: test_func_a$(EXEEXT)
-	@p='test_func_a$(EXEEXT)'; \
-	b='test_func_a'; \
+funca_tests.log: funca_tests$(EXEEXT)
+	@p='funca_tests$(EXEEXT)'; \
+	b='funca_tests'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -1063,10 +1069,10 @@ clean-am: clean-binPROGRAMS clean-checkPROGRAMS clean-generic \
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 		-rm -f ./$(DEPDIR)/FuncA.Po
-	-rm -f ./$(DEPDIR)/calculateTime.Po
+	-rm -f ./$(DEPDIR)/funca_tests.Po
 	-rm -f ./$(DEPDIR)/http_server.Po
+	-rm -f ./$(DEPDIR)/load_server.Po
 	-rm -f ./$(DEPDIR)/main.Po
-	-rm -f ./$(DEPDIR)/unitTest.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -1115,10 +1121,10 @@ maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
 		-rm -f ./$(DEPDIR)/FuncA.Po
-	-rm -f ./$(DEPDIR)/calculateTime.Po
+	-rm -f ./$(DEPDIR)/funca_tests.Po
 	-rm -f ./$(DEPDIR)/http_server.Po
+	-rm -f ./$(DEPDIR)/load_server.Po
 	-rm -f ./$(DEPDIR)/main.Po
-	-rm -f ./$(DEPDIR)/unitTest.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

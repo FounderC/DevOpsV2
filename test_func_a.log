@@ -1,6 +1,0 @@
-cos(0) calculated value: 1
-cos(pi) calculated value: -1
-cos(pi/2) calculated value: 6.41854e-17
-Calculation and sorting time: 19694 milliseconds
-All tests passed!
-PASS test_func_a (exit status: 0)
