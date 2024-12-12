@@ -19,7 +19,8 @@ jobs:
       - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y autoconf automake g++ libboost-test-dev build-essential docker.io
+          sudo apt-get install -y autoconf automake g++ libboost-test-dev build-essential
+          curl -fsSL https://get.docker.com | sh
 
       # Генерація скрипту конфігурації
       - name: Generate configure script
